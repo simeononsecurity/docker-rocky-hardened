@@ -17,7 +17,7 @@ on:
       id: baseupdatecheck
       uses: lucacome/docker-image-update-checker@v1
       with:
-        base-image: library/rockylinux:latest
+        base-image: library/rockylinux:8
         image: simeononsecurity/docker-rocky-hardened:latest
     -
         name: Checkout
