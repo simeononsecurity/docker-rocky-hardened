@@ -1,4 +1,4 @@
-FROM redhat/ubi8
+FROM rockylinux:latest
 
 LABEL org.opencontainers.image.source="https://github.com/simeononsecurity/docker-rocky-hardened"
 LABEL org.opencontainers.image.description="Prehardenend Rocky Linux Docker Container with arm64 and amd64 support"
