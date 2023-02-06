@@ -21,7 +21,7 @@ RUN yum -y --nobest install https://dl.fedoraproject.org/pub/epel/epel-release-l
 RUN yum -y --nobest --skip-broken install ansible
 
 #Setup DoD Ansible Playbook for RHEL8
-RUN wget https://github.com/simeononsecurity/docker-rocky-hardened/blob/main/files/U_RHEL_8_V1R9_STIG_Ansible.zip
+COPY ./files/U_RHEL_8_V1R9_STIG_Ansible.zip ./U_RHEL_8_V1R9_STIG_Ansible.zip
 RUN unzip U_RHEL_8_V1R9_STIG_Ansible.zip -d '/U_RHEL_8_V1R9_STIG_Ansible/'
 RUN cd /U_RHEL_8_V1R9_STIG_Ansible/ && unzip -d '/U_RHEL_8_V1R9_STIG_Ansible/rhel8STIG-ansible/' rhel8STIG-ansible.zip
 
