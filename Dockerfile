@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.authors="simeononsecurity"
 
 ENV container docker
 ENV TERM=xterm
-ENV STIG_PATH=/U_RHEL_8_V1R7_STIG_Ansible/rhel8STIG-ansible/roles/rhel8STIG/files/_Red_Hat_Enterprise_Linux_8_STIG_V1R7_Manual-xccdf.xml
+ENV STIG_PATH=/U_RHEL_8_V1R9_STIG_Ansible/rhel8STIG-ansible/roles/rhel8STIG/files/_Red_Hat_Enterprise_Linux_8_STIG_V1R9_Manual-xccdf.xml
 ENV XML_PATH=/STIGresults.xml
 
 # Update and Install Supporting Packages
@@ -21,9 +21,9 @@ RUN yum -y --nobest install https://dl.fedoraproject.org/pub/epel/epel-release-l
 RUN yum -y --nobest --skip-broken install ansible
 
 #Setup DoD Ansible Playbook for RHEL8
-RUN wget https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_RHEL_8_V1R7_STIG_Ansible.zip
-RUN unzip U_RHEL_8_V1R7_STIG_Ansible.zip -d '/U_RHEL_8_V1R7_STIG_Ansible/'
-RUN cd /U_RHEL_8_V1R7_STIG_Ansible/ && unzip -d '/U_RHEL_8_V1R7_STIG_Ansible/rhel8STIG-ansible/' rhel8STIG-ansible.zip
+RUN wget https://github.com/simeononsecurity/docker-rocky-hardened/blob/main/files/U_RHEL_8_V1R9_STIG_Ansible.zip
+RUN unzip U_RHEL_8_V1R9_STIG_Ansible.zip -d '/U_RHEL_8_V1R9_STIG_Ansible/'
+RUN cd /U_RHEL_8_V1R9_STIG_Ansible/ && unzip -d '/U_RHEL_8_V1R9_STIG_Ansible/rhel8STIG-ansible/' rhel8STIG-ansible.zip
 
 #Run konstruktoid.hardening and DoD Rhel 8 Playbook
 RUN git clone https://github.com/simeononsecurity/docker-rocky-hardened.git
