@@ -10,13 +10,13 @@ ENV STIG_PATH=/U_RHEL_8_V1R9_STIG_Ansible/rhel8STIG-ansible/roles/rhel8STIG/file
 ENV XML_PATH=/STIGresults.xml
 
 # Update and Install Supporting Packages
-RUN dnf -y update && dnf -y upgrade && dnf -y install git wget curl kmod python3 python3-pip python3-virtualenv systemd at net-tools zip unzip
+RUN dnf -y update && dnf -y --setopt=install_weak_deps=False upgrade && dnf -y --setopt=install_weak_deps=False install git wget curl kmod python3 python3-pip python3-virtualenv systemd at net-tools zip unzip
 RUN alternatives --set python /usr/bin/python3
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --upgrade setuptools
+RUN python3 -m pip install --no-cache-dir --upgrade pip
+RUN python3 -m pip install --no-cache-dir --upgrade setuptools
 
 # Install Ansible
-RUN pip3 install ansible
+RUN pip3 --no-cache-dir install ansible
 RUN yum -y --nobest install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 RUN yum -y --nobest --skip-broken install ansible
 
@@ -30,5 +30,8 @@ RUN git clone https://github.com/simeononsecurity/docker-rocky-hardened.git
 RUN ls -la
 RUN cd /docker-rocky-hardened/ && chmod +x ./dockersetup.sh
 RUN cd /docker-rocky-hardened/ && bash ./dockersetup.sh ; exit 0
+
+# Clean RPM Cache
+RUN dnf clean all
 
 ENTRYPOINT [ "/bin/bash" ]
